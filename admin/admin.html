@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <!-- Firebase SDKs (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f4f6f9; margin: 0; padding: 0; }
+    .container { max-width: 1000px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; font-weight: 600; color: #333; }
+    input, button { padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; font-size: 14px; }
+    button { background: #007bff; color: #fff; border: none; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #0056b3; }
+    .hidden { display: none; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    .tabs button { flex: 1; background: #e0e0e0; color: #333; }
+    .tabs button.active { background: #007bff; color: #fff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #f0f0f0; }
+    .highlight-pending { background-color: #fff8dc; }
+    .highlight-accepted { background-color: #d4edda; }
+    .highlight-rejected { background-color: #f8d7da; }
+    .trash-icon { cursor: pointer; color: red; }
+  </style>
+</head>
+<body>
+  <!-- Login -->
+<div class="container" id="loginBox">
+  <h2>Admin Login</h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+
+  <!-- Dashboard -->
+  <div class="container hidden" id="dashboardBox">
+    <h2>Admin Dashboard</h2>
+    <div class="tabs">
+      <button id="requestsTab" class="active">Requests</button>
+      <button id="acceptedTab">Accepted</button>
+      <button id="rejectedTab">Rejected</button>
+      <button id="libraryTab">Library</button>
+      <button id="reviewsTab">Reviews</button>
+    </div>
+
+    <!-- Requests -->
+    <div id="requestsSection">
+      <table>
+        <thead>
+          <tr><th>Select</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th></tr>
+        </thead>
+        <tbody id="consultationList"></tbody>
+      </table>
+      <button id="acceptBtn">Accept Selected</button>
+      <button id="rejectBtn">Reject Selected</button>
+    </div>
+
+    <!-- Accepted -->
+    <div id="acceptedSection" class="hidden">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th></tr>
+        </thead>
+        <tbody id="acceptedList"></tbody>
+      </table>
+    </div>
+
+    <!-- Rejected -->
+    <div id="rejectedSection" class="hidden">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th></tr>
+        </thead>
+        <tbody id="rejectedList"></tbody>
+      </table>
+    </div>
+
+    <!-- Library -->
+    <div id="librarySection" class="hidden">
+      <input type="text" id="searchBar" placeholder="Search items...">
+      <table>
+        <thead>
+          <tr><th>Status</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th><th>Delete</th></tr>
+        </thead>
+        <tbody id="libraryList"></tbody>
+      </table>
+    </div>
+
+    <!-- Reviews -->
+    <div id="reviewsSection" class="hidden">
+      <table>
+        <thead>
+          <tr><th>Rating</th><th>Review</th><th>Name</th><th>Role</th><th>Date</th><th>Action</th></tr>
+        </thead>
+        <tbody id="reviewsList"></tbody>
+      </table>
+    </div>
+  </div>
+
+<script>
+  /* --- Firebase Config --- */
+  const firebaseConfig = {
+    apiKey: "AIzaSyChQ88tI-L_6cJFQmg9DTckVqp5BChZBRw",
+    authDomain: "adminportal-fa94f.firebaseapp.com",
+    projectId: "adminportal-fa94f",
+    storageBucket: "adminportal-fa94f.appspot.com",
+    messagingSenderId: "684666197564",
+    appId: "1:684666197564:web:6134362c00158a1169d539",
+    measurementId: "G-83MQMWC3L0"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+
+  /* --- Admin Credentials (hashed) --- */
+  const ADMIN_USER_HASH = CryptoJS.SHA256("adminuser").toString();
+  const ADMIN_PASS_HASH = CryptoJS.SHA256("adminpassword").toString();
+
+  /* --- DOM References --- */
+  const loginForm = document.getElementById("loginForm");
+  const loginBox = document.getElementById("loginBox");
+  const dashboardBox = document.getElementById("dashboardBox");
+
+  /* --- Login Handler --- */
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      loginBox.classList.add("hidden");
+      dashboardBox.classList.remove("hidden");
+
+      db.collection("consultations").onSnapshot(loadConsultations);
+      db.collection("acceptedConsultations").onSnapshot(loadAcceptedConsultations);
+      db.collection("rejectedConsultations").onSnapshot(loadRejectedConsultations);
+      db.collection("reviews").onSnapshot(loadReviews);
+      loadLibrary();
+    } catch (error) {
+      alert("Login failed: " + error.message);
+    }
+  });
+
+  /* --- Load Consultations --- */
+  async function loadConsultations() {
+    const tableBody = document.getElementById("consultationList");
+    tableBody.innerHTML = "";
+    const snapshot = await db.collection("consultations").orderBy("dateRequested", "desc").get();
+    snapshot.forEach(doc => {
+      const r = doc.data();
+      const row = `<tr class="highlight-pending">
+        <td><input type="checkbox" class="select-check" data-id="${doc.id}"></td>
+        <td>${r.name}</td><td>${r.email}</td><td>${r.phone}</td><td>${r.message}</td><td>${r.dateRequested}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
+
+  /* --- Accept Selected --- */
+  document.getElementById("acceptBtn").onclick = async () => {
+    const checks = document.querySelectorAll("#consultationList .select-check:checked");
+    for (let check of checks) {
+      const id = check.dataset.id;
+      const docRef = db.collection("consultations").doc(id);
+      const docSnap = await docRef.get();
+      if (docSnap.exists) {
+        await db.collection("acceptedConsultations").add(docSnap.data());
+        await docRef.delete();
+      }
+    }
+  };
+
+  /* --- Reject Selected --- */
+  document.getElementById("rejectBtn").onclick = async () => {
+    const checks = document.querySelectorAll("#consultationList .select-check:checked");
+    for (let check of checks) {
+      const id = check.dataset.id;
+      const docRef = db.collection("consultations").doc(id);
+      const docSnap = await docRef.get();
+      if (docSnap.exists) {
+        await db.collection("rejectedConsultations").add(docSnap.data());
+        await docRef.delete();
+      }
+    }
+  };
+
+  /* --- Load Accepted --- */
+  async function loadAcceptedConsultations() {
+    const tableBody = document.getElementById("acceptedList");
+    tableBody.innerHTML = "";
+    const snapshot = await db.collection("acceptedConsultations").orderBy("dateRequested", "desc").get();
+    snapshot.forEach(doc => {
+      const r = doc.data();
+      const row = `<tr class="highlight-accepted">
+        <td>${r.name}</td><td>${r.email}</td><td>${r.phone}</td><td>${r.message}</td><td>${r.dateRequested}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
+
+  /* --- Load Rejected --- */
+  async function loadRejectedConsultations() {
+    const tableBody = document.getElementById("rejectedList");
+    tableBody.innerHTML = "";
+    const snapshot = await db.collection("rejectedConsultations").orderBy("dateRequested", "desc").get();
+    snapshot.forEach(doc => {
+      const r = doc.data();
+      const row = `<tr class="highlight-rejected">
+        <td>${r.name}</td><td>${r.email}</td><td>${r.phone}</td><td>${r.message}</td><td>${r.dateRequested}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
+  /* --- Delete with Admin Credentials --- */
+async function deleteWithAdmin(collection, id) {
+  const user = prompt("Enter admin username:");
+  const pass = prompt("Enter admin password:");
+  const userHash = CryptoJS.SHA256(user).toString();
+  const passHash = CryptoJS.SHA256(pass).toString();
+
+  if (userHash === ADMIN_USER_HASH && passHash === ADMIN_PASS_HASH) {
+    if (confirm("Are you sure you want to delete this item? Once deleted, it cannot be recovered.")) {
+      await db.collection(collection).doc(id).delete();
+      loadLibrary();
+      alert("Item permanently deleted.");
+    }
+  } else {
+    alert("Invalid admin credentials. Deletion cancelled.");
+  }
+}
+
+/* --- Load Library (with Status column) --- */
+async function loadLibrary() {
+  const tableBody = document.getElementById("libraryList");
+  tableBody.innerHTML = "";
+
+  const pendingSnap = await db.collection("consultations").get();
+  const acceptedSnap = await db.collection("acceptedConsultations").get();
+  const rejectedSnap = await db.collection("rejectedConsultations").get();
+
+  const allItems = [];
+  pendingSnap.forEach(doc => allItems.push({...doc.data(), status:"Pending", id:doc.id, collection:"consultations"}));
+  acceptedSnap.forEach(doc => allItems.push({...doc.data(), status:"Accepted", id:doc.id, collection:"acceptedConsultations"}));
+  rejectedSnap.forEach(doc => allItems.push({...doc.data(), status:"Rejected", id:doc.id, collection:"rejectedConsultations"}));
+
+  allItems.forEach(c => {
+    let cls = c.status==="Accepted" ? "highlight-accepted" :
+              c.status==="Rejected" ? "highlight-rejected" : "highlight-pending";
+    const row = `<tr class="${cls}">
+      <td>${c.status}</td>
+      <td>${c.name}</td>
+      <td>${c.email}</td>
+      <td>${c.phone}</td>
+      <td>${c.message}</td>
+      <td>${c.dateRequested}</td>
+      <td><button onclick="deleteWithAdmin('${c.collection}','${c.id}')">Delete</button></td>
+    </tr>`;
+    tableBody.innerHTML += row;
+  });
+
+  // Search filter
+  document.getElementById("searchBar").addEventListener("input", function() {
+    const term = this.value.toLowerCase();
+    Array.from(tableBody.querySelectorAll("tr")).forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(term) ? "" : "none";
+    });
+  });
+}
+
+/* --- Load Reviews --- */
+async function loadReviews() {
+  const tableBody = document.getElementById("reviewsList");
+  tableBody.innerHTML = "";
+  const snapshot = await db.collection("reviews").orderBy("datePosted", "desc").get();
+  snapshot.forEach(doc => {
+    const r = doc.data();
+    const row = `<tr>
+      <td>${r.rating} ✔</td>
+      <td>${r.text}</td>
+      <td>${r.name}</td>
+      <td>${r.role}</td>
+      <td>${r.datePosted}</td>
+      <td><button onclick="deleteReviewWithAdmin('${doc.id}')">Delete Review</button></td>
+    </tr>`;
+    tableBody.innerHTML += row;
+  });
+}
+
+/* --- Delete Review with Admin Credentials --- */
+async function deleteReviewWithAdmin(id) {
+  const user = prompt("Enter admin username:");
+  const pass = prompt("Enter admin password:");
+  const userHash = CryptoJS.SHA256(user).toString();
+  const passHash = CryptoJS.SHA256(pass).toString();
+
+  if (userHash === ADMIN_USER_HASH && passHash === ADMIN_PASS_HASH) {
+    if (confirm("Are you sure you want to delete this review?")) {
+      await db.collection("reviews").doc(id).delete();
+      loadReviews();
+      alert("Review deleted.");
+    }
+  } else {
+    alert("Invalid admin credentials. Deletion cancelled.");
+  }
+}
+
+/* --- Tab Switching --- */
+const requestsTab = document.getElementById("requestsTab");
+const acceptedTab = document.getElementById("acceptedTab");
+const rejectedTab = document.getElementById("rejectedTab");
+const libraryTab = document.getElementById("libraryTab");
+const reviewsTab = document.getElementById("reviewsTab");
+
+const requestsSection = document.getElementById("requestsSection");
+const acceptedSection = document.getElementById("acceptedSection");
+const rejectedSection = document.getElementById("rejectedSection");
+const librarySection = document.getElementById("librarySection");
+const reviewsSection = document.getElementById("reviewsSection");
+
+function setActiveTab(tab) {
+  [requestsTab, acceptedTab, rejectedTab, libraryTab, reviewsTab].forEach(t => t.classList.remove("active"));
+  tab.classList.add("active");
+}
+
+function showSection(section) {
+  [requestsSection, acceptedSection, rejectedSection, librarySection, reviewsSection].forEach(s => s.classList.add("hidden"));
+  section.classList.remove("hidden");
+}
+
+// Attach click handlers
+requestsTab.onclick = () => { 
+  setActiveTab(requestsTab); 
+  showSection(requestsSection); 
+  loadConsultations(); 
+};
+acceptedTab.onclick = () => { 
+  setActiveTab(acceptedTab); 
+  showSection(acceptedSection); 
+  loadAcceptedConsultations(); 
+};
+rejectedTab.onclick = () => { 
+  setActiveTab(rejectedTab); 
+  showSection(rejectedSection); 
+  loadRejectedConsultations(); 
+};
+libraryTab.onclick = () => { 
+  setActiveTab(libraryTab); 
+  showSection(librarySection); 
+  loadLibrary(); 
+};
+reviewsTab.onclick = () => { 
+  setActiveTab(reviewsTab); 
+  showSection(reviewsSection); 
+  loadReviews(); 
+};
+
+/* --- Initialize Default View --- */
+document.addEventListener("DOMContentLoaded", () => {
+  setActiveTab(requestsTab);
+  showSection(requestsSection);
+  loadConsultations();
+});
+</script>
+</body>
+</html>
+

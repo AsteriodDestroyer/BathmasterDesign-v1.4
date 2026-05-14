@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===============================
+       HEAD SECTION
+       =============================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bathmaster Designs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===============================
+     HEADER / NAVBAR
+     =============================== -->
+<header class="navbar">
+  <div class="logo">
+    <span class="bathmaster">Bath Master</span> <span class="designs">Design</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+  <div class="contact">
+    <span class="phone">(519) 580-6628</span>
+    <button class="quote-btn">Get a Quote</button>
+  </div>
+</header>
+
+<!-- ===============================
+     HERO SECTION
+     =============================== -->
+<section class="hero">
+  <div class="overlay">
+    <div class="headline-pill">PREMIUM RENOVATIONS</div>
+    <h1 class="brand">Transform Your Bathroom Into a <span class="highlight">Personal Oasis</span></h1>
+    <p class="subtext">Expert bathroom design and remodeling services tailored to your lifestyle and budget.</p>
+    <div class="hero-buttons">
+      <button class="primary">Schedule Free Consultation</button>
+      <button class="secondary">View Our Work</button>
+    </div>
+    <div class="clients">
+      <span class="stars">★★★★★</span>
+      <span>500+ Happy Clients</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     ABOUT US SECTION
+     =============================== -->
+<section id="about" class="about">
+  <h2>About Us</h2>
+  <p class="about-text">At Bathmaster Designs, we specialize in creating elegant, functional bathrooms tailored to your lifestyle.</p>
+  <div class="about-services">
+    <div class="service-card">
+      <i class="fas fa-pencil-ruler"></i>
+      <h3>Custom Design</h3>
+      <p>Work with our expert designers to create a layout that maximizes space and reflects your personal aesthetic.</p>
+      <button class="learn-btn">Learn More →</button>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-hammer"></i>
+      <h3>Full Remodeling</h3>
+      <p>Complete tear-downs and rebuilds, including plumbing, electrical, flooring, and custom fixture installation.</p>
+      <button class="learn-btn">Learn More →</button>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-shower"></i>
+      <h3>Shower & Tub Conversions</h3>
+      <p>Upgrade your bathing experience with modern walk-in showers or luxurious freestanding tub installations.</p>
+      <button class="learn-btn">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     SERVICES / PORTFOLIO SECTION
+     =============================== -->
+<section id="services" class="services">
+  <div class="services-header">
+    <h2>Our Recent Transformations</h2>
+    <p>Browse through our portfolio of completed projects to see the quality of our craftsmanship.</p>
+    <button class="view-btn">View All Projects</button>
+  </div>
+  <div class="projects">
+    <div class="project-card">
+      <img src="Project1.jpg" alt="Modern Bathroom">
+      <div class="project-overlay">
+        <h3>Modern Elegance</h3>
+        <p>Circular mirror, wooden vanity, glass shower enclosure.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="Project2.jpg" alt="Classic Bathroom">
+      <div class="project-overlay">
+        <h3>Classic Luxury</h3>
+        <p>Freestanding tub, subway tiles, gold fixtures.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="Project3.jpg" alt="Contemporary Bathroom">
+      <div class="project-overlay">
+        <h3>Contemporary Retreat</h3>
+        <p>Wooden walls, large window, warm lighting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     PROCESS SECTION
+     =============================== -->
+<section id="process" class="process-section">
+  <h2>Our Proven Process</h2>
+  <p class="subtitle">We’ve streamlined our renovation process to minimize disruption and deliver exceptional results.</p>
+  <div class="process-steps">
+    <div class="step"><div class="icon-circle">1</div><h3>Consultation</h3><p>We discuss your vision, budget, and timeline.</p></div>
+    <div class="step"><div class="icon-circle">2</div><h3>Design & Planning</h3><p>Detailed 3D renderings and material selection.</p></div>
+    <div class="step"><div class="icon-circle">3</div><h3>Construction</h3><p>Our expert tradesmen execute the plan with precision.</p></div>
+    <div class="step"><div class="icon-circle">4</div><h3>Completion</h3><p>Final walkthrough to ensure every detail meets expectations.</p></div>
+  </div>
+</section>
+
+<!-- ===============================
+     REVIEWS SECTION
+     =============================== -->
+<section id="reviews" class="reviews-section">
+  <h2>What Our Clients Say</h2>
+  <p class="subtitle">Hear from homeowners who transformed their spaces with us.</p>
+  <div class="reviews-wrapper">
+    <button id="prevBtn" class="arrow-btn left-arrow">←</button>
+    <div class="reviews" id="reviewList"></div>
+    <button id="nextBtn" class="arrow-btn right-arrow">→</button>
+  </div>
+  <button id="toggleFormBtn" class="toggle-btn">Share Your Experience</button>
+  <div class="review-form collapse">
+    <form id="clientReviewForm">
+      <input type="text" id="rName" placeholder="Your Name" required>
+      <select id="rRole" required>
+        <option value="">Select Role</option>
+        <option value="HomeOwner">HomeOwner</option>
+        <option value="Client">Client</option>
+      </select>
+      <select id="rRating" required>
+        <option value="">Select Rating</option>
+        <option value="★★★★★">★★★★★</option>
+        <option value="★★★★☆">★★★★☆</option>
+        <option value="★★★☆☆">★★★☆☆</option>
+        <option value="★★☆☆☆">★★☆☆☆</option>
+        <option value="★☆☆☆☆">★☆☆☆☆</option>
+      </select>
+      <textarea id="rText" placeholder="Write your review..." required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===============================
+     CONTACT SECTION
+     =============================== -->
+<section id="contact" class="contact-section">
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h2>Ready to Start?</h2>
+      <p>Get in touch with us today for a free consultation.</p>
+      <h3>Our Location</h3>
+      <p>123 Design Avenue<br>Toronto, ON M5V 2H1</p>
+      <h3>Call Us</h3>
+      <p>	(519) 580-66287</p>
+      <h3>Email Us</h3>
+      <p>bathmasterdesigns@gmail.com</p>
+    </div>
+    <div class="contact-form">
+      <h2>Request a Consultation</h2>
+      <form id="consultationForm">
+        <input type="text" id="cName" placeholder="Your Name" required>
+        <input type="email" id="cEmail" placeholder="Your Email" required>
+        <input type="tel" id="cPhone" placeholder="Your Phone Number">
+        <textarea id="cMessage" placeholder="Tell us about your project..." required></textarea>
+        <button type="submit">Request Consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+     FOOTER SECTION
+     =============================== -->
+<footer>
+  <div class="footer-container">
+    <!-- Company Info -->
+    <div class="footer-column company-info">
+      <h3 class="footer-logo">Bath Master <span>Design</span></h3>
+      <p>Premier bathroom renovation and design specialists serving the Greater Toronto Area.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-column quick-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#" id="footerHome">Home</a></li>
+        <li><a href="#" id="footerServices">Services</a></li>
+        <li><a href="portfolio.html" id="footerPortfolio">Portfolio</a></li>
+        <li><a href="#" id="footerProcess">Our Process</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-column services">
+      <h4>Services</h4>
+      <ul>
+        <li>Full Bathroom Remodels</li>
+        <li>Custom Showers</li>
+        <li>Tub to Shower Conversions</li>
+        <li>Accessible Bathrooms</li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-column newsletter">
+      <h4>Newsletter</h4>
+      <p>Subscribe for design inspiration and tips.</p>
+      <form>
+        <input type="email" placeholder="Your email" />
+        <button type="submit">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>© 2018 Bath Master Design. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===============================
+     CHATBOT WIDGET
+     =============================== -->
+<div class="chatbot">
+  <div class="chat-window">
+    <div class="chat-header">
+      <span class="chat-title">Bath Master Design Bot</span>
+      <span class="chat-close">✖</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="bot-msg">Hello! 👋 Welcome to Bath Master Design. Are you looking for inspiration or ready to start a renovation project?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type your answer..." />
+      <button id="sendBtn">➤</button>
+    </div>
+  </div>
+  <div class="chat-toggle">💬</div>
+</div>
+
+<!-- ===============================
+     FIREBASE SDKs
+     =============================== -->
+<!-- Firebase App (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<!-- Firestore (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+
+<script>
+  // Firebase config (corrected storageBucket)
+   const firebaseConfig = {
+    apiKey: "AIzaSyChQ88tI-L_6cJFQmg9DTckVqp5BChZBRw",
+    authDomain: "adminportal-fa94f.firebaseapp.com",
+    projectId: "adminportal-fa94f",
+    storageBucket: "adminportal-fa94f.appspot.com", // ✅ corrected
+    messagingSenderId: "684666197564",
+    appId: "1:684666197564:web:6134362c00158a1169d539",
+    measurementId: "G-83MQMWC3L0"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+<!-- ===============================
+     MAIN SCRIPT
+     =============================== -->
+<script src="script.js"></script>
+</body>
+</html>
