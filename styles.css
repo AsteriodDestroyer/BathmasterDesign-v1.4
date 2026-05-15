@@ -43,12 +43,12 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
   z-index: 1000;
 }
 
+/* Navbar logo */
 .logo-img {
-  height: 40px;       /* adjust size */
+  height: 40px;      /* adjust to fit nicely */
   width: auto;
   vertical-align: middle;
-  margin-right: 8px;  /* space between logo and text */
-}
+  margin-right: 8px; /* space between logo and text */
 
 /* Nav links */
 .navbar ul li a {
@@ -1014,10 +1014,14 @@ footer.visible {
   font-size: 1.5rem;
   font-weight: 700;
 }
-.footer-logo .logo-img {
-  height: 30px;       /* slightly smaller in footer */
+/* Footer logo */
+.footer-logo-img {
+  height: 30px;      /* slightly smaller in footer */
+  width: auto;
+  vertical-align: middle;
   margin-right: 6px;
 }
+   
 .footer-logo span {
   color: #ffd700; /* gold accent only for "Design" */
 }
