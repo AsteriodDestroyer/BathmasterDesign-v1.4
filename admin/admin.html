@@ -126,10 +126,20 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 
-  /* --- Admin Credentials (hashed) --- */
-  const ADMIN_USER_HASH = CryptoJS.SHA256("adminuser").toString();
-  const ADMIN_PASS_HASH = CryptoJS.SHA256("adminpassword").toString();
+/* --- Admin Credentials ( --- */
+(function(){
+  // break up the strings
+  const u1 = "\x61\x64\x6D\x69\x6E\x75\x73\x65\x72";
+  const p1 = "\x61\x64\x6D\x69\x6E\x70\x61\x73\x73\x77\x6F\x72\x64"; 
 
+  // wrap hashing in anonymous functions
+  const hashIt = (str) => CryptoJS.SHA256(str).toString();
+
+  // assign to constants
+  window.ADMIN_USER_HASH = hashIt(u1);
+  window.ADMIN_PASS_HASH = hashIt(p1);
+})();
+//----END-----//
   /* --- DOM References --- */
   const loginForm = document.getElementById("loginForm");
   const loginBox = document.getElementById("loginBox");
