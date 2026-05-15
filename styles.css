@@ -43,6 +43,13 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
   z-index: 1000;
 }
 
+.logo-img {
+  height: 40px;       /* adjust size */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 8px;  /* space between logo and text */
+}
+
 /* Nav links */
 .navbar ul li a {
   color: #fff; /* white text */
@@ -1006,6 +1013,10 @@ footer.visible {
 .footer-logo {
   font-size: 1.5rem;
   font-weight: 700;
+}
+.footer-logo .logo-img {
+  height: 30px;       /* slightly smaller in footer */
+  margin-right: 6px;
 }
 .footer-logo span {
   color: #ffd700; /* gold accent only for "Design" */
