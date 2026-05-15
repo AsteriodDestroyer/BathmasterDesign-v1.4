@@ -27,6 +27,16 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
 /* ===============================
    NAVBAR PILL FINAL DESIGN
    =============================== */
+.logo {
+  display: flex;
+  align-items: center;   /* vertically center logo and text */
+}
+
+.logo-img {
+  height: 1.2em;         /* slightly bigger than text */
+  width: auto;
+  margin-right: 0.5em;   /* spacing between logo and text */
+}
 .navbar {
   position: fixed;
   top: 15px; /* lowered slightly from the very top */
@@ -42,13 +52,6 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
   transition: top 0.4s ease, opacity 0.4s ease;
   z-index: 1000;
 }
-
-/* Navbar logo */
-.logo-img {
-  height: 40px;      /* adjust to fit nicely */
-  width: auto;
-  vertical-align: middle;
-  margin-right: 8px; /* space between logo and text */
 
 /* Nav links */
 .navbar ul li a {
@@ -1010,18 +1013,18 @@ footer.visible {
   min-width: 220px;
 }
 
+/* Footer logo wrapper */
 .footer-logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+  display: inline-flex;     /* keeps logo + text side by side */
+  align-items: center;      /* vertically centers them */
+  gap: 0.5em;               /* space between logo and text */
 }
-/* Footer logo */
+
+/* Logo image sizing */
 .footer-logo-img {
-  height: 30px;      /* slightly smaller in footer */
+  height: 1.2em;            /* slightly bigger than text */
   width: auto;
-  vertical-align: middle;
-  margin-right: 6px;
 }
-   
 .footer-logo span {
   color: #ffd700; /* gold accent only for "Design" */
 }
