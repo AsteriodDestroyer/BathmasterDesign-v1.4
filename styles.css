@@ -27,16 +27,7 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
 /* ===============================
    NAVBAR PILL FINAL DESIGN
    =============================== */
-.logo {
-  display: flex;
-  align-items: center;   /* vertically center logo and text */
-}
 
-.logo-img {
-  height: 1.2em;         /* slightly bigger than text */
-  width: auto;
-  margin-right: 0.5em;   /* spacing between logo and text */
-}
 .navbar {
   position: fixed;
   top: 15px; /* lowered slightly from the very top */
@@ -51,6 +42,17 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
   border-radius: 40px;
   transition: top 0.4s ease, opacity 0.4s ease;
   z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;   /* vertically center logo and text */
+}
+
+.logo-img {
+  height: 1.2em;         /* slightly bigger than text */
+  width: auto;
+  margin-right: 0.5em;   /* spacing between logo and text */
 }
 
 /* Nav links */
