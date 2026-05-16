@@ -43,3 +43,22 @@ lightbox.addEventListener('click', (e) => {
     lightbox.style.display = 'none';
   }
 });
+/* ===============================
+   FOOTER LINKS BEHAVIOR
+   =============================== */
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("footerServices").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("services").scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("footerProcess").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("process").scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("footerPortfolio").addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = 'portfolio.html';
+  });
+});
