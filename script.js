@@ -1,3 +1,17 @@
+  // Firebase config (corrected storageBucket)
+   const firebaseConfig = {
+    apiKey: "AIzaSyChQ88tI-L_6cJFQmg9DTckVqp5BChZBRw",
+    authDomain: "adminportal-fa94f.firebaseapp.com",
+    projectId: "adminportal-fa94f",
+    storageBucket: "adminportal-fa94f.appspot.com", // ✅ corrected
+    messagingSenderId: "684666197564",
+    appId: "1:684666197564:web:6134362c00158a1169d539",
+    measurementId: "G-83MQMWC3L0"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+
 /* ===============================
    CONSULTATION BUTTON
    =============================== */
