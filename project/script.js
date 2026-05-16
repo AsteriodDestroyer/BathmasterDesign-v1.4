@@ -62,3 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = 'portfolio.html';
   });
 });
+
+document.querySelectorAll('.toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    const gallery = toggle.nextElementSibling;
+    if (gallery.style.display === "block") {
+      gallery.style.display = "none";
+    } else {
+      gallery.style.display = "block";
+    }
+  });
+});
+
