@@ -68,16 +68,17 @@ body::-webkit-scrollbar {   /* Chrome, Safari */
 
 /* Quote button */
 .quote-btn {
-  background: #0a3d62;
-  border: none;
-  padding: 6px 14px;
-  color: #fff; /* white text */
-  cursor: pointer;
-  border-radius: 4px;
+  display: inline-block;
+  background: #0a3d62;   /* button color */
+  color: #fff;           /* text color */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none; /* removes underline */
   font-weight: 600;
-  font-size: 0.9rem;
+  cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
 }
+
 .quote-btn:hover {
   background: #07406e;
   transform: scale(1.05);
