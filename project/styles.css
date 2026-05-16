@@ -1,15 +1,16 @@
-
 /* Base styles */
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f4f4f4; /* dark white (light gray) */
+  background: #f4f4f4; /* light gray background */
   color: #333;
   line-height: 1.6;
 }
 
-/* Navbar */
+/* ===============================
+   NAVBAR (original design)
+   =============================== */
 header.navbar {
   background: #1f1f1f;
   padding: 15px 30px;
@@ -18,44 +19,35 @@ header.navbar {
 }
 
 header.navbar nav {
-/* Tabs */
-.tabs {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
-/* Logo styling */
 header.navbar .logo {
-  position: absolute;   /* float in center */
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 20px;     /* move logo down a little bit */
 }
 
 header.navbar .logo img {
-  height: 200px;   /* bigger logo */
+  height: 120px;
   width: auto;
   display: block;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
-  gap: 15px;
-  margin-bottom: 20px;
 }
 
-/* Brand name styling */
 header.navbar .brand {
-  font-size: 22px;   /* smaller brand name */
+  font-size: 22px;
   font-weight: 700;
-.tab-btn {
-  background: #1f1f1f;
   color: #fff;
 }
 
 header.navbar .brand .design {
-  color: #FFD700; /* yellow accent for "Design" */
+  color: #FFD700; /* yellow accent */
 }
 
-/* Navigation links */
 header.navbar ul {
   list-style: none;
   display: flex;
@@ -74,7 +66,10 @@ header.navbar ul li a {
 header.navbar ul li a:hover {
   color: #FFD700;
 }
-/* Portfolio */
+
+/* ===============================
+   PORTFOLIO TABS
+   =============================== */
 main.portfolio {
   max-width: 1200px;
   margin: 40px auto;
@@ -88,27 +83,33 @@ main.portfolio h1 {
   color: #1f1f1f;
 }
 
-/* Category headings */
-.category h2.toggle {
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  background: #d3d3d3; /* light gray default */
+  color: #000;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  background: #3a3a3a;
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  font-size: 18px;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
-.tab-btn.active {
-  background: #FFD700;
+
+.tab-btn:hover {
+  background: #FFD700; /* yellow on hover */
   color: #000;
 }
 
-.category h2.toggle:hover {
-  background: #4a4a4a;
+.tab-btn.active {
+  background: #FFD700; /* active stays yellow */
+  color: #000;
+}
+
 /* Tab content */
 .tab-content {
   display: none;
@@ -116,6 +117,7 @@ main.portfolio h1 {
   transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
 .tab-content.active {
   display: block;
   opacity: 1;
@@ -123,113 +125,30 @@ main.portfolio h1 {
 }
 
 /* Gallery */
-/* Gallery styling */
 .gallery {
   display: flex;
-  flex-wrap: wrap;
   gap: 15px;
-  overflow: hidden;
-  max-height: 0; /* collapsed by default */
-  transition: max-height 0.5s ease;
 }
 
 .gallery img {
-  max-width: 250px;
-  height: auto; /* keep aspect ratio */
   width: 30%;
   border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-.gallery.expand {
-  max-height: 1000px; /* enough to show images */
-}
-
-.toggle {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #1f1f1f;
-  color: #fff;
-  padding: 10px 15px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.toggle .arrow {
-  transition: transform 0.3s ease;
-}
-
-.gallery.collapse {
-  display: none;
-  padding: 15px;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-}
-
-.toggle.active .arrow {
-  transform: rotate(180deg); /* flips arrow up */
-}
-
-
-/* Lightbox */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(20,20,20,0.9);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 8px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-}
-
-.lightbox .close {
-  position: absolute;
-  top: 20px; right: 30px;
-  font-size: 36px;
-  color: #fff;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.lightbox .close:hover {
-  color: #FFD700;
 }
 
 /* ===============================
-   FOOTER SECTION
+   FOOTER (original design)
    =============================== */
-/* Footer safety */
 footer {
   background: #1c1c1c;
   color: #e0e0e0;
   padding: 60px 20px 30px;
   font-size: 0.95rem;
-  opacity: 1;                /* always visible */
-  transform: none;           /* no offset */
-}
-
-/* When visible */
-footer.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .footer-container {
@@ -251,9 +170,8 @@ footer.visible {
   font-weight: 700;
 }
 .footer-logo span {
-  color: #ffd700; /* gold accent only for "Design" */
+  color: #ffd700; /* gold accent */
 }
-
 
 .footer-column h4 {
   font-size: 1.1rem;
@@ -319,30 +237,3 @@ footer.visible {
   text-decoration: underline;
 }
 
-/* Services column cleanup */
-.footer-column.services {
-  background: transparent;
-  color: #e0e0e0;
-  padding: 0;
-  box-shadow: none;
-}
-.footer-column.services ul li {
-  margin-bottom: 10px;
-  color: #e0e0e0;
-}
-
-
-
-/* ===============================d
-   GLOBAL ANIMATIONS
-   =============================== */
-@keyframes slideInLeft {
-  from { transform: translateX(-50px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-  background: #000;
-  color: #fff;
-  padding: 40px 20px;
-  clear: both;
-  position: relative;
-  z-index: 10;
-}
