@@ -2,47 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-    h1 { text-align: center; margin-bottom: 30px; }
-    .category { margin-bottom: 40px; }
-    .category h2 { margin-bottom: 15px; }
-    .gallery { display: flex; flex-wrap: wrap; gap: 15px; }
-    .gallery img { width: 250px; height: auto; border-radius: 6px; cursor: pointer; }
-  </style>
+  <title>Portfolio - Bathmaster Designs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Our Renovation Portfolio</h1>
 
-  <!-- Half Bath & Basic Renovations -->
-  <div class="category">
-    <h2>Half Bath & Basic Renovations</h2>
-    <div class="gallery">
-      <img src="half1.jpg" alt="Half Bath Renovation">
-      <img src="half2.jpg" alt="Half Bath Renovation">
-      <img src="half3.jpg" alt="Half Bath Renovation">
+<!-- Header -->
+<header class="navbar">
+  <nav>
+    <!-- Left side brand name -->
+    <ul class="nav-left">
+      <li class="brand">
+        Bath Master <span class="design">Design</span>
+      </li>
+    </ul>
+
+    <!-- Center logo -->
+    <div class="logo">
+      <img src="logo.png" alt="Bathmaster Logo">
     </div>
+
+    <!-- Right side -->
+    <ul class="nav-right">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Portfolio -->
+  <main class="portfolio">
+    <h1>Our Renovation Portfolio</h1>
+
+    <!-- Half Bath Renovations -->
+    <section class="category">
+      <h2 class="toggle">Half Bath Renovations</h2>
+      <div class="gallery collapse">
+        <img src="half1.jpg" alt="Half Bath Renovation">
+        <img src="half2.jpg" alt="Half Bath Renovation">
+        <img src="half3.jpg" alt="Half Bath Renovation">
+      </div>
+    </section>
+
+    <!-- Full Bath Renovations -->
+    <section class="category">
+      <h2 class="toggle">Full Bath Renovations</h2>
+      <div class="gallery collapse">
+        <img src="full1.jpg" alt="Full Bathroom Renovation">
+        <img src="full2.jpg" alt="Full Bathroom Renovation">
+        <img src="full3.jpg" alt="Full Bathroom Renovation">
+      </div>
+    </section>
+
+    <!-- New Builds -->
+    <section class="category">
+      <h2 class="toggle">New Builds</h2>
+      <div class="gallery collapse">
+        <img src="new1.jpg" alt="New Bathroom Build">
+        <img src="new2.jpg" alt="New Bathroom Build">
+        <img src="new3.jpg" alt="New Bathroom Build">
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded Image">
   </div>
 
-  <!-- Full Bathroom Renovations -->
-  <div class="category">
-    <h2>Full Bathroom Renovations</h2>
-    <div class="gallery">
-      <img src="full1.jpg" alt="Full Bathroom Renovation">
-      <img src="full2.jpg" alt="Full Bathroom Renovation">
-      <img src="full3.jpg" alt="Full Bathroom Renovation">
-    </div>
-  </div>
-
-  <!-- New Bathroom Builds -->
-  <div class="category">
-    <h2>New Bathroom Builds</h2>
-    <div class="gallery">
-      <img src="new1.jpg" alt="New Bathroom Build">
-      <img src="new2.jpg" alt="New Bathroom Build">
-      <img src="new3.jpg" alt="New Bathroom Build">
-    </div>
-  </div>
+  <!-- External script -->
+  <script src="script.js"></script>
 </body>
 </html>
