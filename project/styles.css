@@ -29,10 +29,11 @@ header.navbar .logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 20px; 
 }
 
 header.navbar .logo img {
-  height: 120px;
+  height: 200px;
   width: auto;
   display: block;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
@@ -236,4 +237,3 @@ footer {
 .footer-bottom .footer-links a:hover {
   text-decoration: underline;
 }
-
