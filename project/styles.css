@@ -1,3 +1,54 @@
+
+/* Navbar container */
+.navbar {
+  background: #1f1f1f;
+  padding: 15px 30px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Left brand */
+.nav-left .brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.nav-left .design {
+  color: #FFD700;
+}
+
+/* Center logo */
+.nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-logo img {
+  height: 120px; /* adjust size */
+  width: auto;
+  display: block;
+}
+
+/* Right links */
+.nav-right {
+  display: flex;
+  gap: 20px;
+}
+.nav-right a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav-right a:hover {
+  color: #FFD700;
+}
+
 /* Tabs */
 .tabs {
   display: flex;
