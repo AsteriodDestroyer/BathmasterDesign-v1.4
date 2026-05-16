@@ -69,7 +69,7 @@ header.navbar ul li a:hover {
 }
 
 /* ===============================
-   PORTFOLIO TABS
+   PORTFOLIO TABS & GALLERY
    =============================== */
 main.portfolio {
   max-width: 1200px;
@@ -92,8 +92,8 @@ main.portfolio h1 {
 }
 
 .tab-btn {
-  background: #d3d3d3; /* light gray default */
-  color: #000;
+  background: #202020; /* light gray default */
+  color: #ffffff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -111,36 +111,99 @@ main.portfolio h1 {
   color: #000;
 }
 
-/* Tab content */
+/* Tab content with animation */
 .tab-content {
   display: none;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .tab-content.active {
   display: block;
   opacity: 1;
   transform: translateY(0);
+  animation: fadeInScale 0.5s ease;
 }
 
-/* Gallery */
+/* Extra animation effect */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Gallery - fixed 3 columns */
 .gallery {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* always 3 columns */
   gap: 15px;
 }
 
 .gallery img {
-  width: 30%;
+  width: 100%;
+  height: 220px;          /* fixed height for uniform look */
+  object-fit: cover;      /* crop neatly without distortion */
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
 }
+/* Lightbox overlay */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(20,20,20,0.9);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Lightbox image */
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+  transform: scale(0.9);
+  opacity: 0;
+  animation: zoomIn 0.4s ease forwards;
+}
+
+/* Close button */
+.lightbox .close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.lightbox .close:hover {
+  color: #FFD700;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 
 /* ===============================
    FOOTER (original design)
