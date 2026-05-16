@@ -12,19 +12,16 @@
 <!-- Header -->
 <header class="navbar">
   <nav>
-    <!-- Left side brand name -->
     <ul class="nav-left">
       <li class="brand">
         Bath Master <span class="design">Design</span>
       </li>
     </ul>
 
-    <!-- Center logo -->
     <div class="logo">
       <img src="logo.png" alt="Bathmaster Logo">
     </div>
 
-    <!-- Right side -->
     <ul class="nav-right">
       <li><a href="https://asterioddestroyer.github.io/BathmasterDesign-v1.4/index.html">Home</a></li>
       <li><a href="https://asterioddestroyer.github.io/BathmasterDesign-v1.4/index.html#contact">Contact</a></li>
@@ -32,56 +29,44 @@
   </nav>
 </header>
 
-  <!-- Portfolio -->
-  <main class="portfolio">
-    <h1>Our Renovation Portfolio</h1>
+<!-- Portfolio Tabs -->
+<main class="portfolio">
+  <h1>Our Renovation Portfolio</h1>
 
-    <!-- Half Bath Renovations -->
-<section class="category">
-  <h2 class="toggle">
-    Half Bath Renovations <span class="arrow">&#9660;</span>
-  </h2>
-  <div class="gallery collapse">
-    <img src="half1.jpg" alt="Half Bath Renovation">
-    <img src="half2.jpg" alt="Half Bath Renovation">
-    <img src="half3.jpg" alt="Half Bath Renovation">
-  </div>
-</section>
-
-<!-- Full Bath Renovations -->
-<section class="category">
-  <h2 class="toggle">
-    Full Bath Renovations <span class="arrow">&#9660;</span>
-  </h2>
-  <div class="gallery collapse">
-    <img src="full1.jpg" alt="Full Bathroom Renovation">
-    <img src="full2.jpg" alt="Full Bathroom Renovation">
-    <img src="full3.jpg" alt="Full Bathroom Renovation">
-  </div>
-</section>
-
-<!-- New Builds -->
-<section class="category">
-  <h2 class="toggle">
-    New Builds <span class="arrow">&#9660;</span>
-  </h2>
-  <div class="gallery collapse">
-    <img src="new1.jpg" alt="New Bathroom Build">
-    <img src="new2.jpg" alt="New Bathroom Build">
-    <img src="new3.jpg" alt="New Bathroom Build">
-  </div>
-</section>
-  </main>
-
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="" alt="Expanded Image">
+  <!-- Tab buttons -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="half">Half Bath Renovations</button>
+    <button class="tab-btn" data-tab="full">Full Bath Renovations</button>
+    <button class="tab-btn" data-tab="new">New Builds</button>
   </div>
 
-  <!-- ===============================
-     FOOTER SECTION
-     =============================== -->
+  <!-- Tab content -->
+  <div class="tab-content active" id="half">
+    <div class="gallery">
+      <img src="half1.jpg" alt="Half Bath Renovation">
+      <img src="half2.jpg" alt="Half Bath Renovation">
+      <img src="half3.jpg" alt="Half Bath Renovation">
+    </div>
+  </div>
+
+  <div class="tab-content" id="full">
+    <div class="gallery">
+      <img src="full1.jpg" alt="Full Bathroom Renovation">
+      <img src="full2.jpg" alt="Full Bathroom Renovation">
+      <img src="full3.jpg" alt="Full Bathroom Renovation">
+    </div>
+  </div>
+
+  <div class="tab-content" id="new">
+    <div class="gallery">
+      <img src="new1.jpg" alt="New Bathroom Build">
+      <img src="new2.jpg" alt="New Bathroom Build">
+      <img src="new3.jpg" alt="New Bathroom Build">
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
 <footer>
   <div class="footer-container">
     <!-- Company Info -->
@@ -94,10 +79,10 @@
     <div class="footer-column quick-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#" id="footerHome">Home</a></li>
-        <li><a href="#" id="footerServices">Services</a></li>
-        <li><a href="project/portfolio.html" id="footerPortfolio">Portfolio</a></li>
-        <li><a href="#" id="footerProcess">Our Process</a></li>
+        <li><a href="https://asterioddestroyer.github.io/BathmasterDesign-v1.4/index.html">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="project/portfolio.html">Portfolio</a></li>
+        <li><a href="#process">Our Process</a></li>
       </ul>
     </div>
 
@@ -123,7 +108,6 @@
     </div>
   </div>
 
-  <!-- Bottom Bar -->
   <div class="footer-bottom">
     <p>© 2018 Bath Master Design. All rights reserved.</p>
     <div class="footer-links">
@@ -132,8 +116,7 @@
   </div>
 </footer>
 
-
-  <!-- External script -->
-  <script src="script.js"></script>
+<!-- External script -->
+<script src="script.js"></script>
 </body>
 </html>
