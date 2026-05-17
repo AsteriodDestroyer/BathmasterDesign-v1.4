@@ -300,3 +300,274 @@ footer {
 .footer-bottom .footer-links a:hover {
   text-decoration: underline;
 }
+
+
+/*================================
+   TERMS OF SERVICE POPUP
+   =============================== */
+/* ToS Popup container */
+.tos-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.tos-popup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Content box */
+.tos-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Scrollable text */
+.tos-text {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+.tos-text:hover {
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.tos-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tos-text::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.tos-text:hover::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* Buttons */
+.tos-buttons {
+  display: none;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tos-buttons.show {
+  display: flex;
+}
+
+.tos-buttons button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #000000;
+  transition: all 0.3s ease; /* smooth animation */
+}
+
+/* Accept button */
+#tos-accept-btn {
+  background: #fffb00; /* gold yellow */
+}
+
+#tos-accept-btn:hover {
+  transform: scale(1.05);              /* slight grow */
+  box-shadow: 0 0 12px #fffb00;        /* glowing yellow effect */
+  filter: brightness(105%);            /* brighter on hover */
+  color: #000;                         /* keep black text */
+}
+
+/* Decline button */
+#tos-decline-btn {
+  background: #a3a3a3; /* gray */
+}
+
+#tos-decline-btn:hover {
+  transform: scale(1.05);              /* slight grow */
+  box-shadow: 0 0 12px #a3a3a3;        /* subtle glow */
+  filter: brightness(90%);             /* darker on hover */
+  color: #000;                         /* black text */
+}
+
+/* Acknowledged stamp */
+.tos-stamp {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tos-stamp-text {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #494949; /* clean black text */
+  opacity: 0.95;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.tos-stamp.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+
+
+/* Privacy Policy Popup Container */
+/* Privacy Popup container */
+.privacy-popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.privacy-popup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Content box */
+.privacy-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Scrollable text */
+.privacy-text {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+.privacy-text:hover {
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.privacy-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.privacy-text::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.privacy-text:hover::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* Buttons */
+.privacy-buttons {
+  display: none;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.privacy-buttons.show {
+  display: flex;
+}
+
+.privacy-buttons button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #000000;
+  transition: all 0.3s ease; /* smooth animation */
+}
+
+/* Accept button */
+#privacy-accept-btn {
+  background: #fffb00; /* gold yellow */
+}
+
+#privacy-accept-btn:hover {
+  transform: scale(1.05);              /* slight grow */
+  box-shadow: 0 0 12px #fffb00;        /* glowing effect */
+  filter: brightness(105%);            /* brighter on hover */
+}
+
+/* Decline button */
+#privacy-decline-btn {
+  background: #a3a3a3; /* gray */
+}
+
+#privacy-decline-btn:hover {
+  transform: scale(1.05);              /* slight grow */
+  box-shadow: 0 0 12px #a3a3a3;        /* subtle glow */
+  filter: brightness(90%);             /* darker on hover */
+}
+
+
+/* Acknowledged stamp */
+.privacy-stamp {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.privacy-stamp-text {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #494949; /* clean black text */
+  opacity: 0.95;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.privacy-stamp.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
