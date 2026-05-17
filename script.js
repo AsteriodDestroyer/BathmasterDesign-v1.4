@@ -320,3 +320,107 @@ sendBtn.addEventListener('click', sendMessage);
 input.addEventListener('keypress', e => {
   if (e.key === 'Enter') sendMessage();
 });
+
+//=================
+// Terms of Service Popup Logic
+//=================
+window.addEventListener('load', () => {
+  const tosPopup = document.getElementById('tos-popup');
+  const tosButtonsMain = document.getElementById('tos-buttons-main');
+  const tosStamp = document.getElementById('tos-stamp');
+  const tosAcceptBtn = document.getElementById('tos-accept-btn');
+  const tosDeclineBtn = document.getElementById('tos-decline-btn');
+  const tosLink = document.getElementById('tos-link');
+  const tosContent = document.querySelector('#tos-popup .tos-content');
+
+  // First visit: show Accept/Decline
+  if (!localStorage.getItem('tosAccepted')) {
+    tosPopup.classList.add('active');
+    tosButtonsMain.classList.add('show');
+    tosStamp.classList.remove('show');
+  }
+
+  // Accept button
+  tosAcceptBtn.addEventListener('click', () => {
+    localStorage.setItem('tosAccepted', 'true');
+    tosPopup.classList.remove('active');
+  });
+
+  // Decline button
+  tosDeclineBtn.addEventListener('click', () => {
+    localStorage.removeItem('tosAccepted');
+    alert("You must accept the Terms of Service to use this site. Please retry.");
+    window.location.reload();
+  });
+
+  // Footer link: show popup with stamp
+  if (tosLink) {
+    tosLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      tosPopup.classList.add('active');
+      tosButtonsMain.classList.remove('show'); // hide Accept/Decline
+      tosStamp.classList.add('show');          // show Acknowledged ✔
+    });
+  }
+
+  // Close popup when clicking outside (review mode only)
+  tosPopup.addEventListener('click', (e) => {
+    const firstVisit = !localStorage.getItem('tosAccepted');
+    if (!firstVisit && !tosContent.contains(e.target)) {
+      tosPopup.classList.remove('active');
+    }
+  });
+});
+
+
+
+//=================
+// Privacy and Policy Popup Logic (similar to TOS)
+//=================
+window.addEventListener('load', () => {
+  const privacyPopup = document.getElementById('privacy-popup');
+  const privacyButtonsMain = document.getElementById('privacy-buttons-main');
+  const privacyStamp = document.getElementById('privacy-stamp');
+  const privacyAcceptBtn = document.getElementById('privacy-accept-btn');
+  const privacyDeclineBtn = document.getElementById('privacy-decline-btn');
+  const privacyLink = document.getElementById('privacy-link');
+  const privacyContent = document.querySelector('#privacy-popup .privacy-content');
+
+  // First visit: show Accept/Decline
+  if (!localStorage.getItem('privacyAccepted')) {
+    privacyPopup.classList.add('active');
+    privacyButtonsMain.classList.add('show');
+    privacyStamp.classList.remove('show');
+  }
+
+  // Accept button
+  privacyAcceptBtn.addEventListener('click', () => {
+    localStorage.setItem('privacyAccepted', 'true');
+    privacyPopup.classList.remove('active');
+  });
+
+  // Decline button
+  privacyDeclineBtn.addEventListener('click', () => {
+    localStorage.removeItem('privacyAccepted');
+    alert("You must accept the Privacy Policy to use this site. Please retry.");
+    window.location.reload();
+  });
+
+  // Footer link: show popup with stamp
+  if (privacyLink) {
+    privacyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      privacyPopup.classList.add('active');
+      privacyButtonsMain.classList.remove('show'); // hide Accept/Decline
+      privacyStamp.classList.add('show');          // show Acknowledged ✔
+    });
+  }
+
+  // Close popup when clicking outside (review mode only)
+  privacyPopup.addEventListener('click', (e) => {
+    const firstVisit = !localStorage.getItem('privacyAccepted');
+    if (!firstVisit && !privacyContent.contains(e.target)) {
+      privacyPopup.classList.remove('active');
+    }
+  });
+});
