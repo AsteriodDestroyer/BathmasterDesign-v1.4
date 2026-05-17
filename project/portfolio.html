@@ -108,13 +108,92 @@
     </div>
   </div>
 
+  <!-- Bottom bar -->
   <div class="footer-bottom">
     <p>© 2018 Bath Master Design. All rights reserved.</p>
     <div class="footer-links">
-      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+      <a href="#" id="privacy-link">Privacy Policy</a> | 
+      <a href="#" id="tos-link">Terms of Service</a>
     </div>
   </div>
+  <button onclick="localStorage.removeItem('tosAccepted'); localStorage.removeItem('privacyAccepted'); window.location.reload();">
+  Reset Terms of Service and Privacy Policy
+</button>
 </footer>
+
+
+<!-- Terms of Service Popup -->
+<div id="tos-popup" class="tos-popup">
+  <div class="tos-content">
+    <h2>Terms of Service</h2>
+    <div id="tos-text" class="tos-text">
+      <h3>1. Use of Content</h3>
+      <p>All content on this site is the property of Bath Master Design. You may not copy, reproduce, or distribute without prior written consent.</p>
+
+      <h3>2. User Responsibilities</h3>
+      <p>By using our services, you agree to provide accurate information and comply with applicable laws.</p>
+
+      <h3>3. Enforcement and Legal Action</h3>
+      <ul>
+        <li>Canadian Copyright Act – infringement provisions, statutory damages, and injunctions.</li>
+        <li>U.S. Copyright Act – statutory damages up to $150,000 per work for willful infringement.</li>
+        <li>Digital Millennium Copyright Act (DMCA, U.S. Law) – takedown procedures and enforcement for online infringement.</li>
+      </ul>
+
+      <h3>4. Acceptance of Terms</h3>
+      <p>By clicking “Accept,” you acknowledge that you have read, understood, and agreed to these Terms of Service.</p>
+    </div>
+
+    <!-- Accept/Decline buttons -->
+    <div id="tos-buttons-main" class="tos-buttons">
+      <button id="tos-accept-btn">Accept</button>
+      <button id="tos-decline-btn">Decline</button>
+    </div>
+
+    <!-- Acknowledged stamp -->
+    <div id="tos-stamp" class="tos-stamp">
+      <span class="tos-stamp-text">Acknowledged ✔</span>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy Policy Popup -->
+<!-- Privacy Policy Popup -->
+<div id="privacy-popup" class="privacy-popup">
+  <div class="privacy-content">
+    <h2>Privacy Policy</h2>
+    <div id="privacy-text" class="privacy-text">
+      <p><strong>Effective Date:</strong> May 17, 2026</p>
+
+      <h3>1. Collection of Information</h3>
+      <p>We collect only the information necessary to provide consultation services, such as your name, email, phone number, and project details.</p>
+
+      <h3>2. Confidentiality</h3>
+      <p>Your information is treated as strictly confidential and will not be disclosed without your consent.</p>
+
+      <h3>3. Security Measures</h3>
+      <p>We use encryption, secure servers, and restricted access to protect your data.</p>
+
+      <h3>4. Legal Compliance</h3>
+      <p>We comply with PIPEDA, U.S. privacy laws, and GDPR where applicable.</p>
+
+      <h3>5. Your Rights</h3>
+      <p>You may request access, correction, or deletion of your information subject to legal obligations.</p>
+    </div>
+
+    <!-- Accept/Decline buttons -->
+    <div id="privacy-buttons-main" class="privacy-buttons">
+      <button id="privacy-accept-btn">Accept</button>
+      <button id="privacy-decline-btn">Decline</button>
+    </div>
+
+    <!-- Acknowledged stamp -->
+    <div id="privacy-stamp" class="privacy-stamp">
+      <span class="privacy-stamp-text">Acknowledged ✔</span>
+    </div>
+  </div>
+</div>
+
 
 <!-- External script -->
 <script src="script.js"></script>
