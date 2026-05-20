@@ -206,13 +206,21 @@ main.portfolio h1 {
 
 
 /* ===============================
-   FOOTER (original design)
+   FOOTER SECTION
    =============================== */
 footer {
   background: #1c1c1c;
   color: #e0e0e0;
   padding: 60px 20px 30px;
   font-size: 0.95rem;
+  opacity: 1;                /* always visible */
+  transform: none;           /* no offset */
+}
+
+/* When visible */
+footer.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .footer-container {
@@ -234,8 +242,9 @@ footer {
   font-weight: 700;
 }
 .footer-logo span {
-  color: #ffd700; /* gold accent */
+  color: #ffd700; /* gold accent only for "Design" */
 }
+
 
 .footer-column h4 {
   font-size: 1.1rem;
@@ -301,7 +310,27 @@ footer {
   text-decoration: underline;
 }
 
+/* Services column cleanup */
+.footer-column.services {
+  background: transparent;
+  color: #e0e0e0;
+  padding: 0;
+  box-shadow: none;
+}
+.footer-column.services ul li {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
 
+
+
+/* ===============================d
+   GLOBAL ANIMATIONS
+   =============================== */
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
 /*================================
    TERMS OF SERVICE POPUP
    =============================== */
@@ -409,6 +438,7 @@ footer {
   filter: brightness(90%);             /* darker on hover */
   color: #000;                         /* black text */
 }
+
 
 /* Acknowledged stamp */
 .tos-stamp {
